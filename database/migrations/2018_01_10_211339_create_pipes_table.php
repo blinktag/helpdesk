@@ -18,7 +18,7 @@ class CreatePipesTable extends Migration
             $table->string('server');
             $table->string('username');
             $table->string('password');
-            $table->unsignedInteger('department_id')->index()
+            $table->unsignedInteger('department_id')->index();
             $table->timestamps();
         });
     }
