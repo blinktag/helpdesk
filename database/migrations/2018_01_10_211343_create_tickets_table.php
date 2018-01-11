@@ -16,7 +16,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('subject');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->index();
             $table->unsignedInteger('reply_count')->default(0);
             $table->dateTimeTz('last_reply');
             $table->string('last_replier');
