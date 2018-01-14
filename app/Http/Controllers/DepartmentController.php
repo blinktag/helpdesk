@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Http\Resources\DepartmentResource;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -14,7 +15,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $departments = Department::all();
+        return response()->json($departments);
     }
 
     /**
@@ -22,10 +24,10 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +37,10 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), ['name' => 'required']);
+
+        $department = Department::create(['name' => request('name')]);
+        return response()->json($department);
     }
 
     /**
@@ -46,7 +51,8 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        //
+        $department = new DepartmentResource($department);
+        return response()->json($department);
     }
 
     /**
@@ -55,10 +61,10 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
-    {
-        //
-    }
+    // public function edit(Department $department)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +75,9 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $this->validate(request(), ['name' => 'required']);
+        $department->name = request('name');
+        return response()->json($department);
     }
 
     /**
@@ -80,6 +88,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $department->delete();
+        return response([], 204);
     }
 }
