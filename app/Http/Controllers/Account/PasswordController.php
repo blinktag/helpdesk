@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Account;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Account\PasswordStoreRequest;
+use App\Mail\Account\PasswordUpdated;
+use Illuminate\Support\Facades\Mail;
 
 class PasswordController extends Controller
 {
@@ -18,6 +20,8 @@ class PasswordController extends Controller
         $request->user()->update([
             'password' => bcrypt($request->password)
         ]);
+
+        Mail::to($request->user())->send(new PasswordUpdated());
 
         return redirect()->route('account.index');
     }
