@@ -17,6 +17,6 @@ class ProfileController extends Controller
     {
         $request->user()->update($request->only('name', 'email'));
 
-        return back();
+        return back()->withSuccess('Account details updated.');
     }
 }
