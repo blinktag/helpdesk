@@ -31,4 +31,26 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function confirmationToken()
+    {
+        return $this->hasOne(ConfirmationToken::class);
+    }
+
+    /**
+     * Create a new account confirmation token for this user
+     */
+    public function generateConfirmationToken()
+    {
+        $token = str_random(50);
+
+        $this->confirmationToken()->create([
+            'token'      => $token,
+            'expires_at' => $this->freshTimestamp()->addMinutes(10)
+        ]);
+
+        return $token;
+    }
+
+
 }
