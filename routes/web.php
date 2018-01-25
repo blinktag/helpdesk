@@ -6,6 +6,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('/departments', 'DepartmentController');
 
+Route::get('/activation/activate/{confirmation_token}', 'Auth\ActivationController@activate')->name('activation.activate');
+
 Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.'], function() {
     /**
      * Account
@@ -24,3 +26,5 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.
     Route::get('password', 'Account\PasswordController@index')->name('password.index');
     Route::post('password', 'Account\PasswordController@store')->name('password.store');
 });
+
+
