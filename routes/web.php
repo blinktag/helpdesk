@@ -6,7 +6,9 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('/departments', 'DepartmentController');
 
-Route::get('/activation/activate/{confirmation_token}', 'Auth\ActivationController@activate')->name('activation.activate');
+Route::group(['prefix' => 'activation', 'middleware' => ['guest', 'confirmation_token_expired:/'], 'as' => 'activation.'], function() {
+    Route::get('/{confirmation_token}', 'Auth\ActivationController@activate')->name('activate');
+});
 
 Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.'], function() {
     /**
