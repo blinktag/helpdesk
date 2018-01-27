@@ -55,10 +55,14 @@ class User extends Authenticatable
         return $token;
     }
 
-    public function hasActivated(): bool
+    /**
+     * Generate gravatar URL for the user
+     *
+     * @return string
+     */
+    public function getGravatarUrl(): string
     {
-        return $this->activated;
+        $hash = md5(strtolower($this->email));
+        return "https://www.gravatar.com/avatar/{$hash}";
     }
-
-
 }
