@@ -7,7 +7,7 @@
                 <div class="panel-heading">
                     Open Tickets
 
-                    <a href="" class="btn btn-primary btn-xs pull-right">Open New Ticket</a>
+                    <a href="{{ route('ticket.create') }}" class="btn btn-primary btn-xs pull-right">Open New Ticket</a>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">

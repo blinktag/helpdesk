@@ -15,6 +15,7 @@ Route::resource('/departments', 'DepartmentController');
  * Tickets
  */
 Route::get('/tickets/{id}', 'TicketController@show')->name('ticket.show');
+Route::get('/tickets/create', 'TicketsController@create')->name('ticket.create');
 
 
 Route::group(['prefix' => 'activation', 'middleware' => ['guest'], 'as' => 'activation.'], function() {

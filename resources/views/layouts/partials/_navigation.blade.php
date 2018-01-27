@@ -19,7 +19,9 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                &nbsp;
+              <li class="active"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+              <li><a href="{{ route('dashboard') }}">Tickets</a></li>
+              <li><a href="{{ route('ticket.create') }}">New Ticket</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
