@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +30,7 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        return view('ticket.create');
     }
 
     /**
@@ -41,12 +47,14 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Ticket  $ticket
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show(Request $request)
     {
-        //
+        $ticket = Ticket::where('user_id', auth()->user()->id)
+                    ->findOrFail($request->id);
+        return view('ticket.show', compact('ticket'));
     }
 
     /**
