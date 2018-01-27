@@ -6,8 +6,11 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('/departments', 'DepartmentController');
 
-Route::group(['prefix' => 'activation', 'middleware' => ['guest', 'confirmation_token_expired:/'], 'as' => 'activation.'], function() {
+Route::group(['prefix' => 'activation', 'middleware' => ['guest'], 'as' => 'activation.'], function() {
+    Route::get('/resend', 'Auth\ActivationResendController@index')->name('resend');
+    Route::post('/resend', 'Auth\ActivationResendController@store')->name('resend.store');
     Route::get('/{confirmation_token}', 'Auth\ActivationController@activate')->name('activate');
+
 });
 
 Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.'], function() {

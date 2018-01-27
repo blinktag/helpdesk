@@ -12,6 +12,11 @@ class ActivationController extends Controller
 
     protected $redirectTo = '/';
 
+    public function __construct()
+    {
+        $this->middleware('confirmation_token_expired:/');
+    }
+
     public function activate(ConfirmationToken $token)
     {
         $token->user->update(['activated' => true]);
@@ -22,7 +27,7 @@ class ActivationController extends Controller
         return redirect()->intended($this->redirectPath())->withSuccess('You are now signed in');
     }
 
-    public function redirectPath()
+    public function redirectPath(): string
     {
         return $this->redirectTo;
     }

@@ -19,7 +19,7 @@ class ConfirmationToken extends Model
         });
     }
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'token';
     }
@@ -34,7 +34,7 @@ class ConfirmationToken extends Model
      *
      * @return bool
      */
-    public function isExpired()
+    public function isExpired(): bool
     {
         return $this->freshTimestamp()->gt($this->expires_at);
     }

@@ -43,7 +43,7 @@ class User extends Authenticatable
     /**
      * Create a new account confirmation token for this user
      */
-    public function generateConfirmationToken()
+    public function generateConfirmationToken(): string
     {
         $token = str_random(50);
 
@@ -53,6 +53,11 @@ class User extends Authenticatable
         ]);
 
         return $token;
+    }
+
+    public function hasActivated(): bool
+    {
+        return $this->activated;
     }
 
 
