@@ -2,19 +2,19 @@
 
 namespace Tests\Unit;
 
+use App\Pipe;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PipeTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    /** @test */
+    public function getMailDSN()
     {
-        $this->assertTrue(true);
+        $pipe = new Pipe();
+        $pipe->server = 'mail.google.com';
+
+        $this->assertSame('{mail.google.com:143/imap/novalidate-cert}INBOX', $pipe->getMailDSN());
     }
 }
