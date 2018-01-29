@@ -8,21 +8,26 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Help Desk') }} - @yield('page_title')</title>
+    <title>{{ config('app.name', 'Laravel') }} - @yield('page_title', 'Welcome')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        @include('layouts.partials._navigation')
-        <div class="container">
-            @include('layouts.partials.alerts._alerts')
-            @yield('content')
+<div id="app">
+    @include('layouts.partials._navigation')
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-10">
+                @include('layouts.partials.alerts._alerts')
+                <h2>@yield('page_title', '')</h2>
+                @yield('content')
+            </div>
         </div>
     </div>
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
