@@ -49,6 +49,7 @@
                 <div class="card-body">
                     <form action="{{ route('responses.store') }}" method="POST">
                             {{ csrf_field() }}
+                            <input type="hidden" name="ticket_id" value="{{ $ticket->id }}" />
                             <div class="form-group">
                                 <textarea rows="10" name="body" id="body" class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }}">{{ old('body') }}</textarea>
 

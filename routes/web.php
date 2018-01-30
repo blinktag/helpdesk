@@ -14,7 +14,7 @@ Route::resource('/departments', 'DepartmentController');
 /**
  * Responses
  */
-Route::resource('/responses', 'DepartmentController');
+Route::resource('/responses', 'ResponseController');
 
 /** 
  * Tickets

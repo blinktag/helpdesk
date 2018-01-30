@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Ticket;
 use App\Response;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreNewResponse;
 
 class ResponseController extends Controller
 {
@@ -22,20 +24,27 @@ class ResponseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+
+    // }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreNewResponse  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNewResponse $request)
     {
-        //
+        $ticket = Ticket::where('user_id', auth()->user()->id)->find($request->ticket_id);
+        $ticket->responses()->create([
+            'content' => request('body'),
+            'user_id' => auth()->user()->id,
+            'from'    => request()->ip()
+        ]);
+
+        return redirect(route('ticket.show', $ticket->id))->withSuccess('Your reply has been added to this ticket');
     }
 
     /**
