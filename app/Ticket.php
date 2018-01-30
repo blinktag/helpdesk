@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
+
+    protected $guarded = ['id'];
+
+    protected $dates = ['last_reply'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -15,10 +15,11 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('department_id')->index();
             $table->string('subject');
             $table->unsignedInteger('user_id')->index();
             $table->unsignedInteger('reply_count')->default(0);
-            $table->dateTimeTz('last_reply');
+            $table->dateTimeTz('last_reply')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('last_replier');
             $table->timestamps();
         });

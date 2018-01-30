@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Ticket;
+use App\Department;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreNewTicket;
 
 class TicketController extends Controller
 {
@@ -20,7 +22,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('dashboard');
     }
 
     /**
@@ -30,7 +32,8 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view('ticket.create');
+        $departments = Department::all();
+        return view('ticket.create', compact('departments'));
     }
 
     /**
@@ -39,9 +42,24 @@ class TicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNewTicket $request)
     {
-        //
+        // Create ticket
+        $ticket = auth()->user()->tickets()->create([
+            'department_id' => request('department_id'),
+            'subject'      => request('subject'),
+            'last_replier' => auth()->user()->name
+        ]);
+
+        // Create response
+        $ticket->responses()->create([
+            'content' => request('body'),
+            'from'    => $request->ip(),
+            'user_id' => auth()->user()->id
+        ]);
+
+        return redirect(route('ticket.show', $ticket->id))
+                   ->withSuccess('Your ticket has been opened. A technician will respond shortly');
     }
 
     /**

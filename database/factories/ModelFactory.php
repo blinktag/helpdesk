@@ -1,5 +1,6 @@
 <?php
 
+use App\Department;
 use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
@@ -23,10 +24,11 @@ $factory->define(App\Ticket::class, function (Faker $faker) {
     $user = factory(App\User::class)->create();
 
     return [
-        'subject'      => $faker->sentence,
-        'last_reply'   => $faker->dateTime(),
-        'last_replier' => $user->name,
-        'user_id'      => $user->id
+        'subject'       => $faker->sentence,
+        'last_reply'    => $faker->dateTime(),
+        'last_replier'  => $user->name,
+        'user_id'       => $user->id,
+        'department_id' => 1
     ];
 });
 

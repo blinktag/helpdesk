@@ -1,5 +1,5 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 //@import "variables";
@@ -16,7 +16,10 @@ $btn-padding-x-xs:  .20rem !default;
 $btn-padding-y-xs:  .12rem !default;
 $input-btn-line-height-xs: 1.1 !default;
 
-.btn.btn-xs {
-   // line-height: ensure proper height of button next to small input
-   @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-sm, $input-btn-line-height-xs, $btn-border-radius-sm);
+@import "./components/button.scss";
+@import "./components/table.scss";
+
+.mb0 {
+    margin-bottom: 0;
 }
+

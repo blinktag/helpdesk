@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);/*!
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);/*!
  * Bootstrap v4.0.0 (https://getbootstrap.com)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -10154,5 +10154,18 @@ a.text-dark:focus {
   font-size: 0.8203125rem;
   line-height: 1.1;
   border-radius: 0.2rem;
+}
+
+tfoot {
+  font-size: 10pt;
+  background-color: #eee;
+}
+
+tfoot td {
+  padding: 0.4rem !important;
+}
+
+.mb0 {
+  margin-bottom: 0;
 }
 

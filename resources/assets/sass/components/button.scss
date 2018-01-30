@@ -1,0 +1,5 @@
+// Bootstrap 4 no longer has btn-xs
+.btn.btn-xs {
+    // line-height: ensure proper height of button next to small input
+    @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-sm, $input-btn-line-height-xs, $btn-border-radius-sm);
+}

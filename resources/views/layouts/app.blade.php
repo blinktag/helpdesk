@@ -19,8 +19,9 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-10">
+                <br />
+                <h3>@yield('page_title', '')</h3>
                 @include('layouts.partials.alerts._alerts')
-                <h2>@yield('page_title', '')</h2>
                 @yield('content')
             </div>
         </div>

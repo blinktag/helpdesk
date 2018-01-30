@@ -11,11 +11,17 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
  */
 Route::resource('/departments', 'DepartmentController');
 
+/**
+ * Responses
+ */
+Route::resource('/responses', 'DepartmentController');
+
 /** 
  * Tickets
  */
+Route::get('/tickets/create', 'TicketController@create')->name('ticket.create');
+Route::post('/tickets/', 'TicketController@store')->name('ticket.store');
 Route::get('/tickets/{id}', 'TicketController@show')->name('ticket.show');
-Route::get('/tickets/create', 'TicketsController@create')->name('ticket.create');
 
 
 Route::group(['prefix' => 'activation', 'middleware' => ['guest'], 'as' => 'activation.'], function() {

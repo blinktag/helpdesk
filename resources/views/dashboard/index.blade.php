@@ -8,13 +8,13 @@
             <a href="{{ route('ticket.create') }}" class="btn btn-primary btn-xs pull-right">Open New Ticket</a>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm mb0">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Subject</th>
+                        <th width="5%">ID</th>
+                        <th width="50%">Subject</th>
                         <th>Last Replier</th>
-                        <th>Last Updated</th>
+                        <th class="text-right">Last Updated</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,9 +35,9 @@
                                 {{ $ticket->last_replier }}
                             </a>
                         </td>
-                        <td>
+                        <td class="text-right">
                             <a href="{{ route('ticket.show', $ticket->id) }} ">
-                                {{ $ticket->last_reply }}
+                                {{ $ticket->last_reply->diffForHumans() }}
                             </a>
                         </td>
                     </tr>
