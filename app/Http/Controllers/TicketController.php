@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ticket;
 use App\Department;
 use Illuminate\Http\Request;
+use App\Events\TicketCreated;
 use App\Http\Requests\StoreNewTicket;
 
 class TicketController extends Controller
@@ -58,6 +59,8 @@ class TicketController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
+        event(new TicketCreated($ticket));
+
         return redirect(route('ticket.show', $ticket->id))
                    ->withSuccess('Your ticket has been opened. A technician will respond shortly');
     }
@@ -71,6 +74,8 @@ class TicketController extends Controller
     public function show(Request $request)
     {
         $ticket = Ticket::where('user_id', auth()->user()->id)
+                    ->with('responses')
+                    ->with('responses.user')
                     ->findOrFail($request->id);
         return view('ticket.show', compact('ticket'));
     }

@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\TicketReplyCreated' => [
             'App\Listeners\SendTicketReplyEmail',
         ],
+        'App\Events\TicketCreated' => [
+            'App\Listeners\SendTicketCreatedEmail',
+        ],
     ];
 
     /**
