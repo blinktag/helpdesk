@@ -9,8 +9,10 @@ use App\Response;
 use Monolog\Logger;
 use PhpImap\Mailbox;
 use PhpImap\IncomingMail;
+use App\Events\TicketCreated;
 use Illuminate\Console\Command;
 use Monolog\Handler\StreamHandler;
+use App\Events\TicketReplyCreated;
 
 class ParseMailsCommand extends Command
 {
@@ -96,10 +98,18 @@ class ParseMailsCommand extends Command
         $ticket = $this->createOrFindTicket($pipe, $user, $message);
 
         // Add response to ticket
-        $this->createResponseToTicket($ticket, $message);
+        $response = $this->createResponseToTicket($ticket, $message);
 
         // Handle Attachments
         // TODO
+
+
+        if ($ticket->fresh()->reply_count === 1) {
+            event(new TicketCreated($ticket));
+            return;
+        }
+
+        event(new TicketReplyCreated($response));
     }
 
     /**
@@ -111,6 +121,9 @@ class ParseMailsCommand extends Command
      */
     public function createResponseToTicket(Ticket $ticket, IncomingMail $message): Response
     {
+        $ticket->reply_count += 1;
+        $ticket->save();
+
         return $ticket->responses()->create([
             'user_id' => $ticket->user->id,
             'from'    => $message->fromAddress,
