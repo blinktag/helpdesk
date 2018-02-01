@@ -20,7 +20,7 @@
                             </div>
                         </td>
                         <td valign="top">
-                            {{ $response->content }}
+                            {!! nl2br(e($response->content)) !!}
                         </td>
                     </tr>
                 </tbody>

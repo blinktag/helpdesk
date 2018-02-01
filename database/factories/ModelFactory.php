@@ -32,7 +32,6 @@ $factory->define(App\Ticket::class, function (Faker $faker) {
     ];
 });
 
-
 $factory->define(App\Response::class, function (Faker $faker) {
     return [
         'content' => $faker->paragraph,
@@ -40,3 +39,9 @@ $factory->define(App\Response::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(App\Pipe::class, function (Faker $faker) {
+    return [
+        'server'   => 'localhost',
+        'username' => 'support@localhost'
+    ];
+});
