@@ -48,8 +48,8 @@ class TicketController extends Controller
         // Create ticket
         $ticket = auth()->user()->tickets()->create([
             'department_id' => request('department_id'),
-            'subject'      => request('subject'),
-            'last_replier' => auth()->user()->name
+            'subject'       => request('subject'),
+            'last_replier'  => auth()->user()->name
         ]);
 
         // Create response

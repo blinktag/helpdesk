@@ -24,8 +24,8 @@ class StoreNewResponse extends FormRequest
     public function rules()
     {
         return [
-            'ticket_id' => 'required|exists:tickets,id',
-            'body' => 'required',
+            'ticket_id'         => 'required|exists:tickets,id',
+            'body'              => 'required',
             'ticket_attachment' => 'nullable'
         ];
     }

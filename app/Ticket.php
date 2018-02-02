@@ -11,6 +11,10 @@ class Ticket extends Model
 
     protected $dates = ['last_reply'];
 
+    protected $casts = [
+        'reply_count' => 'integer',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

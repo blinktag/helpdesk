@@ -39,6 +39,7 @@ class ResponseController extends Controller
     public function store(StoreNewResponse $request)
     {
         $ticket = Ticket::where('user_id', auth()->user()->id)->find($request->ticket_id);
+
         $response = $ticket->responses()->create([
             'content' => request('body'),
             'user_id' => auth()->user()->id,

@@ -9,6 +9,17 @@ class Response extends Model
 
     protected $fillable = ['content', 'from', 'user_id'];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function($response) {
+            $response->ticket->increment('reply_count');
+        });
+        static::deleted(function($response) {
+            $response->ticket->decrement('reply_count');
+        });
+    }
+
     public function ticket()
     {
         return $this->belongsTo(Ticket::class);
