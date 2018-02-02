@@ -45,6 +45,19 @@ class ResponseController extends Controller
             'from'    => request()->ip()
         ]);
 
+        // Add Attachment
+        if ($request->hasFile('ticket_attachment')) {
+            $upload = $request->file('ticket_attachment');
+
+            $path = $upload->store('attachments');
+            $response->attachments()->create([
+                'name'      => $upload->getClientOriginalName(),
+                'mime_type' => $upload->getClientMimeType(),
+                'size'      => $upload->getClientSize(),
+                'location'  => $path
+            ]);
+        }
+
         event(new TicketReplyCreated($response));
 
         return redirect(route('ticket.show', $ticket->id))->withSuccess('Your reply has been added to this ticket');

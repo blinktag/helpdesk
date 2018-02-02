@@ -18,7 +18,7 @@
                     Reply
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('responses.store') }}" method="POST">
+                    <form action="{{ route('responses.store') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="hidden" name="ticket_id" value="{{ $ticket->id }}" />
                             <div class="form-group">
@@ -36,7 +36,7 @@
                                         <span class="input-group-text">Attach A File</span>
                                     </div>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="ticket_attachment">
                                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                     </div>
                                 </div>

@@ -25,7 +25,8 @@ class StoreNewResponse extends FormRequest
     {
         return [
             'ticket_id' => 'required|exists:tickets,id',
-            'body' => 'required'
+            'body' => 'required',
+            'ticket_attachment' => 'nullable'
         ];
     }
 }
