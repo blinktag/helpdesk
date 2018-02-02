@@ -26,12 +26,12 @@
                                 Attachments
                             </a>
                         
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 @foreach($response->attachments as $attachment)
                                     <a class="dropdown-item" href="#">
                                         <i class="fa fa-file-pdf-o"></i>
                                         {{ $attachment->name }}
-                                        ({{ $attachment->size }}KB)
+                                        ({{ $attachment->getSizeInKilobytes() }}KB)
                                     </a>
                                 @endforeach
                             </div>

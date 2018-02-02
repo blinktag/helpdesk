@@ -14,4 +14,14 @@ class Attachment extends Model
     {
         return $this->belongsTo(Response::class);
     }
+
+    /**
+     * Display file size in kilobytes
+     *
+     * @return string
+     */
+    public function getSizeInKilobytes(): string
+    {
+        return number_format($this->size / 1024, 2);
+    }
 }
