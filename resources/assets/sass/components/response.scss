@@ -1,0 +1,15 @@
+.response {
+    &__content {
+
+        display: flex; 
+        flex-direction: column; 
+        min-height: 134px;
+
+        &__body {
+            flex-grow: 1;
+        }
+        &__attachments {
+            flex-shrink: 1
+        }
+    }
+}

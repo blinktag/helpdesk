@@ -16,6 +16,11 @@ Route::resource('/departments', 'DepartmentController');
  */
 Route::resource('/responses', 'ResponseController');
 
+/**
+ * Attachments
+ */
+Route::resource('/attachments', 'AttachmentController');
+
 /** 
  * Tickets
  */
