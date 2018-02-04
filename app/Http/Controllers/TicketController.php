@@ -6,6 +6,7 @@ use App\Ticket;
 use App\Department;
 use Illuminate\Http\Request;
 use App\Events\TicketCreated;
+use App\Services\CreateResponse;
 use App\Http\Requests\StoreNewTicket;
 
 class TicketController extends Controller
@@ -40,10 +41,11 @@ class TicketController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\StoreNewTicket  $request
+     * @param \App\Services\CreateResponse  $response_service
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNewTicket $request)
+    public function store(StoreNewTicket $request, CreateResponse $response_service)
     {
         // Create ticket
         $ticket = auth()->user()->tickets()->create([
@@ -52,12 +54,7 @@ class TicketController extends Controller
             'last_replier'  => auth()->user()->name
         ]);
 
-        // Create response
-        $ticket->responses()->create([
-            'content' => request('body'),
-            'from'    => $request->ip(),
-            'user_id' => auth()->user()->id
-        ]);
+        $response = $response_service->make($request, $ticket);
 
         event(new TicketCreated($ticket));
 
@@ -76,6 +73,7 @@ class TicketController extends Controller
         $ticket = Ticket::where('user_id', auth()->user()->id)
                     ->with('responses')
                     ->with('responses.user')
+                    ->with('responses.attachments')
                     ->findOrFail($request->id);
         return view('ticket.show', compact('ticket'));
     }

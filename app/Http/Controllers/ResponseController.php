@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ticket;
 use App\Response;
 use Illuminate\Http\Request;
+use App\Services\CreateResponse;
 use App\Events\TicketReplyCreated;
 use App\Http\Requests\StoreNewResponse;
 
@@ -34,30 +35,14 @@ class ResponseController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  App\Http\Requests\StoreNewResponse  $request
+     * @param \App\Services\CreateResponse  $response_service
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNewResponse $request)
+    public function store(StoreNewResponse $request, CreateResponse $response_service)
     {
         $ticket = Ticket::where('user_id', auth()->user()->id)->find($request->ticket_id);
 
-        $response = $ticket->responses()->create([
-            'content' => request('body'),
-            'user_id' => auth()->user()->id,
-            'from'    => request()->ip()
-        ]);
-
-        // Add Attachment
-        if ($request->hasFile('ticket_attachment')) {
-            $upload = $request->file('ticket_attachment');
-
-            $path = $upload->store('attachments');
-            $response->attachments()->create([
-                'name'      => $upload->getClientOriginalName(),
-                'mime_type' => $upload->getClientMimeType(),
-                'size'      => $upload->getClientSize(),
-                'location'  => $path
-            ]);
-        }
+        $response = $response_service->make($request, $ticket);
 
         event(new TicketReplyCreated($response));
 

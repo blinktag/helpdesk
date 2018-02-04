@@ -10,7 +10,7 @@
                     Create New Ticket
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('ticket.store') }}" method="POST">
+                    <form action="{{ route('ticket.store') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="control-label" for="name">Department</label>
@@ -47,6 +47,7 @@
                                 </span>
                             @endif
                         </div>
+                        @include('ticket.partials._attachment_field')
                         <button type="submit" class="btn btn-primary">
                             Submit New Ticket
                         </button>

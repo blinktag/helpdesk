@@ -24,9 +24,10 @@ class StoreNewTicket extends FormRequest
     public function rules()
     {
         return [
-            'department_id' => 'required|exists:departments,id',
-            'subject'       => 'required',
-            'body'          => 'required'
+            'department_id'     => 'required|exists:departments,id',
+            'subject'           => 'required',
+            'body'              => 'required',
+            'ticket_attachment' => 'nullable'
         ];
     }
 }
