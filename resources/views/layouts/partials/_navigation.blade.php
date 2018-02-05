@@ -9,11 +9,16 @@
             </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            @if (Auth::check())
                 <ul class="navbar-nav">
                     <li class="nav-item active"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Tickets</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('ticket.create') }}">New Ticket</a></li>
                 </ul>
+                <form class="form-inline my-2 my-lg-0" method="GET" action="{{ route('search') }}">
+                        <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search tickets">
+                    </form>
+                @endif
                 <ul class="nav navbar-nav ml-auto">
                     @if (Auth::guest())
                         <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>

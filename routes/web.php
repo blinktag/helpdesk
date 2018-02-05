@@ -21,6 +21,11 @@ Route::resource('/responses', 'ResponseController');
  */
 Route::resource('/attachments', 'AttachmentController');
 
+/**
+ * Search
+ */
+Route::get('/search', 'SearchController@index')->name('search');
+
 /** 
  * Tickets
  */
