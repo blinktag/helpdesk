@@ -18,7 +18,7 @@ class CreateTicketsTable extends Migration
             $table->unsignedInteger('department_id')->index();
             $table->string('subject');
             $table->unsignedInteger('user_id')->index();
-            $table->enum('status', ['open','hold','closed']);
+            $table->enum('status', ['open','hold','closed'])->default('open');
             $table->unsignedInteger('reply_count')->default(0);
             $table->dateTimeTz('last_reply')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('last_replier');
