@@ -13,13 +13,11 @@ class SearchController extends Controller
         $this->middleware('auth');
     }
 
-
     public function index(Request $request)
     {
         $response_results = Response::search($request->q)
                                 ->where('user_id', auth()->user()->id)
-                                
-                                ->get()->load('ticket');
+                                ->paginate(10);
 
         return view('search.index', compact('response_results'));
     }
