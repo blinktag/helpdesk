@@ -8,6 +8,7 @@
 @import "~bootswatch/dist/flatly/variables";
 
 // Bootstrap
+$enable-rounded: false;
 @import "~bootstrap/scss/bootstrap";
 
 @import "~bootswatch/dist/flatly/bootswatch";
