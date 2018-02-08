@@ -26,7 +26,7 @@ Route::resource('/attachments', 'AttachmentController');
  */
 Route::get('/search', 'SearchController@index')->name('search');
 
-/** 
+/**
  * Tickets
  */
 Route::get('/tickets/create', 'TicketController@create')->name('ticket.create');
@@ -60,6 +60,10 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.
     Route::post('password', 'Account\PasswordController@store')->name('password.store');
 });
 
-
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::get('/login', 'Admin\LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'Admin\LoginController@login')->name('login.submit');
+    Route::get('/', 'Admin\DashboardController@index')->name('index');
+});
 
 

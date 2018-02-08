@@ -3,20 +3,14 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class UserSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('admins')->insert([
             'name'      => 'Administrator',
             'email'     => 'admin@helpdesk.test',
-            'password'  => bcrypt('password'),
-            'activated' => true
+            'password'  => bcrypt('password')
         ]);
     }
 }

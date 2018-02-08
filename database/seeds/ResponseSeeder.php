@@ -19,8 +19,8 @@ class ResponseSeeder extends Seeder
 
                     },
                     'user_id' => 1
-                ])
+                ]);
             }
-        ])
+        ]);
     }
 }
