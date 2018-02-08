@@ -60,10 +60,14 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.
     Route::post('password', 'Account\PasswordController@store')->name('password.store');
 });
 
+/**
+ * Admin
+ */
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/login', 'Admin\LoginController@showLoginForm')->name('login');
     Route::post('/login', 'Admin\LoginController@login')->name('login.submit');
-    Route::get('/', 'Admin\DashboardController@index')->name('index');
+    Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
+    Route::get('/search', 'Admin\SearchController@index')->name('search');
 });
 
 

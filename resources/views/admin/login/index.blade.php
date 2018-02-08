@@ -5,7 +5,7 @@
     <div class="row justify-content-md-center mt-5">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Login</div>
+                <div class="card-header">Staff Login</div>
                 <div class="card-body">
                     <form class="form-horizontal" method="POST" action="{{ route('admin.login.submit') }}">
                         {{ csrf_field() }}

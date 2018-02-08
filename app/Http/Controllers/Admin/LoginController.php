@@ -29,7 +29,7 @@ class LoginController extends Controller
         $credentials = ['email' => $request->email, 'password' => $request->password];
 
         if(Auth::guard('admin')->attempt($credentials, $request->remember)) {
-            return redirect()->intended(route('admin.index'));
+            return redirect()->intended(route('admin.dashboard'));
         }
         return redirect()->back()->withInput($request->only('email', 'remember'));
     }
