@@ -21,8 +21,7 @@
                     <th width="1%">Id</th>
                     <th>Subject</th>
                     <th width="15%">Last Update</th>
-                    <th width="15%">Last Replier</th>
-                    <th width="10%">Status</th>
+                    <th width="25%">Last Replier</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,21 +45,6 @@
                     <td>
                         <a href="{{ route('ticket.show', $ticket->id) }}">
                             {{ $ticket->last_replier }}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ route('ticket.show', $ticket->id) }}">
-                            @switch($ticket->status)
-                                @case('open')
-                                    <span class="badge badge-success">Open</span>
-                                    @break
-                                @case('hold')
-                                    <span class="badge badge-warning">Awaiting your response</span>
-                                    @break
-                                @case('closed')
-                                    <span class="badge badge-secondary">Closed</span>
-                                    @break
-                            @endswitch
                         </a>
                     </td>
                 </tr>
