@@ -1,10 +1,18 @@
 @extends('layouts.admin')
 
+@section('page_title', "{$department->name } - $status")
+
 @section('content')
+<div class="row">
+    <div class="col-sm-3">
+        <department-tree></department-tree>
+    </div>
+    <div class="col-sm-9">
+
 <div class="card">
     <div class="card-header">
         <i class="fa fa-search fa-fw"></i>
-        Search Results
+        Tickets
     </div>
     <div class="card-body">
         <table class="table table-striped table-small mb0">
@@ -18,31 +26,31 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($response_results as $response)
+                @foreach($tickets as $ticket)
                 <tr>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
-                            {{ $response->ticket_id }}
+                        <a href="{{ route('ticket.show', $ticket->id) }}">
+                            {{ $ticket->id }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
-                            {{ $response->ticket->subject }}
+                        <a href="{{ route('ticket.show', $ticket->id) }}">
+                            {{ $ticket->subject }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
-                            {{ $response->ticket->last_reply->diffForHumans() }}
+                        <a href="{{ route('ticket.show', $ticket->id) }}">
+                            {{ $ticket->last_reply->diffForHumans() }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
-                            {{ $response->ticket->last_replier }}
+                        <a href="{{ route('ticket.show', $ticket->id) }}">
+                            {{ $ticket->last_replier }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
-                            @switch($response->ticket->status)
+                        <a href="{{ route('ticket.show', $ticket->id) }}">
+                            @switch($ticket->status)
                                 @case('open')
                                     <span class="badge badge-success">Open</span>
                                     @break
@@ -60,7 +68,10 @@
             </tbody>
         </table>
 
-        {{ $response_results->links() }}
+        {{ $tickets->links() }}
+    </div>
+</div>
+
     </div>
 </div>
 @endsection

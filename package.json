@@ -20,6 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "bootswatch": "^4.0.0"
+        "bootswatch": "^4.0.0",
+        "vue-tree-navigation": "^1.0.2"
     }
 }

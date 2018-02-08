@@ -19,14 +19,20 @@ class DashboardController extends Controller
         return view('admin.dashboard.index');
     }
 
-    public function browse(Department $department)
+    public function browse(Request $request)
     {
-        if (!$department) {
-            return redirect(route('admin.dashboard.browse', 1));
+        if (!$request->id) {
+            $department = Department::first();
+            return redirect(route('admin.browse.department', ['id' => $department->id, 'status' => 'open']));
         }
 
+        $status      = $request->status;
         $departments = Department::all();
-        $tickets = Ticket::where('department')->get();
-        return view('admin.dashboard.index', compact('departments', 'tickets'));
+        $department  = Department::find($request->id);
+        $tickets     = Ticket::where('department_id', $request->id)
+                        ->where('status', $status)
+                        ->paginate(20);
+
+        return view('admin.dashboard.browse', compact('departments', 'tickets', 'department', 'status'));
     }
 }

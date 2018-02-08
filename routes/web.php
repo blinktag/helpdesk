@@ -67,7 +67,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/login', 'Admin\LoginController@showLoginForm')->name('login');
     Route::post('/login', 'Admin\LoginController@login')->name('login.submit');
     Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
+    Route::get('/browse/{id}/{status}', 'Admin\DashboardController@browse')->name('browse.department');
+    Route::get('/browse/{id}/', 'Admin\DashboardController@browse');
+    Route::get('/browse/', 'Admin\DashboardController@browse')->name('browse');
     Route::get('/search', 'Admin\SearchController@index')->name('search');
+    Route::get('/department/tree', 'Admin\DepartmentController@tree')->name('department.tree');
 });
 
 

@@ -1,17 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Department;
-use App\Http\Resources\DepartmentResource;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\DepartmentResource;
+use App\Http\Resources\DepartmentTreeResource;
 
 class DepartmentController extends Controller
 {
 
+
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
+    }
+
+    public function tree()
+    {
+        $departments = DepartmentTreeResource::collection(Department::all());
+        return response()->json($departments);
     }
 
     /**

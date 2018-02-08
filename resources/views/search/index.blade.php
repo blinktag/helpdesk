@@ -22,7 +22,7 @@
                 <tr>
                     <td>
                         <a href="{{ route('ticket.show', $response->ticket_id) }}">
-                            {{ $response->id }}
+                            {{ $response->ticket_id }}
                         </a>
                     </td>
                     <td>

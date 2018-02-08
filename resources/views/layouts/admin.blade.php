@@ -19,7 +19,7 @@
     @include('layouts.admin.partials._navigation')
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="col-10">
+            <div class="col-12">
                 <br />
                 <h3>@yield('page_title', '')</h3>
                 @include('layouts.partials.alerts._alerts')
