@@ -28,22 +28,22 @@
                 @foreach($tickets as $ticket)
                 <tr>
                     <td>
-                        <a href="{{ route('ticket.show', $ticket->id) }}">
+                        <a href="{{ route('admin.ticket.show', $ticket->id) }}">
                             {{ $ticket->id }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $ticket->id) }}">
+                        <a href="{{ route('admin.ticket.show', $ticket->id) }}">
                             {{ $ticket->subject }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $ticket->id) }}">
+                        <a href="{{ route('admin.ticket.show', $ticket->id) }}">
                             {{ $ticket->last_reply->diffForHumans() }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $ticket->id) }}">
+                        <a href="{{ route('admin.ticket.show', $ticket->id) }}">
                             {{ $ticket->last_replier }}
                         </a>
                     </td>

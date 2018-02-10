@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/browse/', 'Admin\DashboardController@browse')->name('browse');
     Route::get('/search', 'Admin\SearchController@index')->name('search');
     Route::get('/department/tree', 'Admin\DepartmentController@tree')->name('department.tree');
+    Route::resource('/ticket', 'Admin\TicketController');
 });
 
 
