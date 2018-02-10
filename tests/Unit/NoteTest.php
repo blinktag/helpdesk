@@ -18,10 +18,16 @@ class NoteTest extends TestCase
         parent::setUp();
         $this->note = new Note();
     }
-    
+
     /** @test */
     public function note_belongs_to_a_ticket()
     {
         $this->assertInstanceOf(BelongsTo::class, $this->note->ticket());
+    }
+
+    /** @test */
+    public function note_belongs_to_an_admin()
+    {
+        $this->assertInstanceOf(BelongsTo::class, $this->note->author());
     }
 }

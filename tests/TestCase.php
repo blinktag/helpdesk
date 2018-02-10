@@ -33,6 +33,13 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
+    protected function signInAdmin($admin = null)
+    {
+        $admin = $admin ?: factory(\App\Admin::class)->create();
+        $this->actingAs($admin, 'admin');
+        return $this;
+    }
+
     protected function signIn($user = null)
     {
         $user = $user ?: factory(\App\User::class)->create();

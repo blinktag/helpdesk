@@ -16,7 +16,7 @@ class CreateNotesTable extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('ticket_id')->index();
-            $table->unsignedInteger('user_id')->index();
+            $table->unsignedInteger('admin_id')->index();
             $table->text('content');
             $table->enum('priority', ['low', 'medium', 'high'])->default('low');
             $table->timestamps();
