@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('/ticket', 'Admin\TicketController');
     Route::resource('/response', 'Admin\ResponseController');
     Route::resource('/notes', 'Admin\NoteController');
+    Route::resource('/users', 'Admin\UserController');
     Route::get('/ticket/{ticket}/notes', 'Admin\NoteController@ticket');
 });
 
