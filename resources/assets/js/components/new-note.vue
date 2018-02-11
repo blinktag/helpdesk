@@ -49,10 +49,11 @@ export default {
 
     methods: {
         create() {
-
-            let data = new FormData();
-            data.append('content', this.note.content);
-            data.append('ticket_id', this.note.ticket_id);
+            const data = {
+                content: this.note.content,
+                priority: this.note.priority,
+                ticket_id: this.note.ticket_id
+            }
 
             axios.post('/admin/notes/', data).then(response => {
                 this.$emit('updated');

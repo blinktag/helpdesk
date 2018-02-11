@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 
 class TicketController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $this->middleware('auth:admin');
+
     }
 
     /**

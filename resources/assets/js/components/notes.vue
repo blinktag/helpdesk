@@ -13,11 +13,16 @@
         </div>
         <div @updated="fetch" v-if="items.length">
             <div v-for="(note, index) in items" :key="index">
-                <note :data="note" @deleted="remove(index)" :key="note.Id"></note>
+                <note :data="note" @deleted="remove(index)" :key="note.id"></note>
             </div>
         </div>
-        <div v-if="!items.length && showNew === false" class="well text-center">
-            No notes
+        <div v-if="!items.length && showNew === false">
+            <div class="col-sm-12">
+                <div class="card card-body bg-light text-center">
+                    No notes
+                </div>
+            </div>
+            <br />
         </div>
     </div>
 </template>
