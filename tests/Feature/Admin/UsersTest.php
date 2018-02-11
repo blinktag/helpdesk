@@ -33,4 +33,31 @@ class UsersTest extends TestCase
              ->assertSee($user->name);
     }
 
+    /** @test */
+    public function view_user_profile()
+    {
+        $user = factory(\App\User::class)->create();
+
+        $this->signInAdmin();
+
+        $this->get("/admin/users/{$user->id}")
+             ->assertSee($user->name);
+    }
+
+    /** @test */
+    public function update_user_profile()
+    {
+        $user = factory(\App\User::class)->create();
+
+        $this->signInAdmin();
+
+        $post_data = ['name' => 'John Smith', 'email' => 'john@smith.net'];
+
+        $this->put("/admin/users/{$user->id}", $post_data)
+             ->assertStatus(302);
+
+        $this->assertSame('John Smith', $user->fresh()->name);
+        $this->assertSame('john@smith.net', $user->fresh()->email);
+    }
+
 }
