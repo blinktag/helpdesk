@@ -74504,6 +74504,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -75281,9 +75286,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         create: function create() {
             var _this = this;
 
-            var data = new FormData();
-            data.append('content', this.note.content);
-            data.append('ticket_id', this.note.ticket_id);
+            var data = {
+                content: this.note.content,
+                priority: this.note.priority,
+                ticket_id: this.note.ticket_id
+            };
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/admin/notes/', data).then(function (response) {
                 _this.$emit('updated');
@@ -75513,7 +75520,7 @@ var render = function() {
               { key: index },
               [
                 _c("note", {
-                  key: note.Id,
+                  key: note.id,
                   attrs: { data: note },
                   on: {
                     deleted: function($event) {
@@ -75529,13 +75536,22 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     !_vm.items.length && _vm.showNew === false
-      ? _c("div", { staticClass: "well text-center" }, [
-          _vm._v("\n        No notes\n    ")
-        ])
+      ? _c("div", [_vm._m(0), _vm._v(" "), _c("br")])
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("div", { staticClass: "card card-body bg-light text-center" }, [
+        _vm._v("\n                No notes\n            ")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
