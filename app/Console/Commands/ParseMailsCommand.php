@@ -62,7 +62,7 @@ class ParseMailsCommand extends Command
         foreach(Pipe::all() as $pipe) {
             $mailbox = new Mailbox($pipe->getMailDSN(), $pipe->username, $pipe->password, __DIR__);
             $mails = $mailbox->searchMailbox('ALL');
-            
+
             $mail_count = count($mails);
             if ($mail_count === 0) {
                 $this->log->info("Skipping, no emails found", ['pipe' => $pipe->username]);
@@ -74,7 +74,7 @@ class ParseMailsCommand extends Command
                 $msg = $mailbox->getMail($mail_id);
                 $this->fromMailMessage($pipe, $msg);
                 //$mailbox->deleteMail($mail_id);
-            } 
+            }
         }
     }
 
@@ -125,14 +125,15 @@ class ParseMailsCommand extends Command
         $ticket->save();
 
         return $ticket->responses()->create([
-            'user_id' => $ticket->user->id,
-            'from'    => $message->fromAddress,
-            'content' => $message->textPlain
+            'author_id'   => $ticket->user->id,
+            'author_type' => 'App\User',
+            'from'        => $message->fromAddress,
+            'content'     => $message->textPlain
         ]);
     }
 
     /**
-     * Find the ticket that this message belongs to, or create a new 
+     * Find the ticket that this message belongs to, or create a new
      * one if needed
      *
      * @param App\Pipe $pipe
@@ -151,7 +152,8 @@ class ParseMailsCommand extends Command
 
         if (empty($ticket)) {
             // No existing ticket found, create a new one
-            $ticket = $user->tickets()->create([
+            $ticket = Ticket::create([
+                'user_id'       => $user->id,
                 'department_id' => $pipe->department_id,
                 'subject'       => $message->subject,
                 'reply_count'   => 0,

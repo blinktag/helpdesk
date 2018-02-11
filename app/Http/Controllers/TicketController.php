@@ -48,7 +48,8 @@ class TicketController extends Controller
     public function store(StoreNewTicket $request, CreateResponse $response_service)
     {
         // Create ticket
-        $ticket = auth()->user()->tickets()->create([
+        $ticket = Ticket::create([
+            'user_id'       => auth()->user()->id,
             'department_id' => request('department_id'),
             'subject'       => request('subject'),
             'last_replier'  => auth()->user()->name
