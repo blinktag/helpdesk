@@ -54,3 +54,10 @@ $factory->define(App\Admin::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Note::class, function (Faker $faker) {
+    return [
+        'content' => $faker->word,
+        'priority' => 'low'
+    ];
+});

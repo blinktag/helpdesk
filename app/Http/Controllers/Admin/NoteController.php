@@ -27,7 +27,8 @@ class NoteController extends Controller
         $note = Note::create([
             'ticket_id' => $request->ticket_id,
             'content'   => $request->content,
-            'admin_id'  => \Auth::id()
+            'admin_id'  => \Auth::id(),
+            'priority'  => $request->priority
         ]);
 
         return new NoteResource($note);
