@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function tickets()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->morphMany(Response::class, 'author');
     }
 
     public function confirmationToken()

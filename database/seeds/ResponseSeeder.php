@@ -18,7 +18,8 @@ class ResponseSeeder extends Seeder
                     'department_id' => function() {
 
                     },
-                    'user_id' => 1
+                    'author_id' => 1,
+                    'author_type' => 'App\User'
                 ]);
             }
         ]);

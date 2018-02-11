@@ -17,11 +17,14 @@ class CreateResponse
      */
     public function make(Request $request, Ticket $ticket): Response
     {
+        $author = $this->getUser();
+
         // Create response
         $response = $ticket->responses()->create([
-            'content' => $request->get('body'),
-            'user_id' => auth()->user()->id,
-            'from'    => request()->ip()
+            'content'     => $request->get('body'),
+            'author_id'   => $author->id,
+            'author_type' => get_class($author),
+            'from'        => request()->ip()
         ]);
 
         // Add Attachment
@@ -38,5 +41,19 @@ class CreateResponse
         }
 
         return $response;
+    }
+
+    /**
+     * Returns the correct logged in user
+     *
+     * @return mixed
+     */
+    function getUser()
+    {
+        if(\Auth::guard('admin')->check()) {
+            return \Auth::guard('admin')->user();
+        }
+
+        return \Auth::guard('web')->user();
     }
 }

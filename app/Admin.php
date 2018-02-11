@@ -62,4 +62,9 @@ class Admin extends Authenticatable
         $hash = md5(strtolower($this->email));
         return "https://www.gravatar.com/avatar/{$hash}";
     }
+
+    public function responses()
+    {
+        return $this->morphMany(Response::class, 'author');
+    }
 }

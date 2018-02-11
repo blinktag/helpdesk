@@ -1,16 +1,27 @@
 <table class="table table-bordered">
     <tbody>
         <tr>
+            @if ($response->author instanceof \App\Admin)
             <td width="20%">
                 <div class="text-center">
                     <p>
-                        <img src="{{ $response->user->getGravatarUrl() }}" class="rounded-circle" />
+                        <img src="{{ $response->author->getGravatarUrl() }}" class="rounded" />
                     </p>
                     <p>
-                    {{ $response->user->name }}
+                        <b>{{ $response->author->name }}</b>
                     </p>
                 </div>
             </td>
+            @else
+            <td width="20%">
+                <div class="text-center">
+                    <p>
+                        <img src="{{ $response->author->getGravatarUrl() }}" class="rounded-circle" />
+                    </p>
+                    <p>{{ $response->author->name }}</p>
+                </div>
+            </td>
+            @endif
             <td valign="top" class="response">
                 <div class="response__content">
                     <div class="response__content__body">
@@ -25,7 +36,7 @@
                             </span>
                                 Attachments
                             </a>
-                        
+
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 @foreach($response->attachments as $attachment)
                                     <a class="dropdown-item" href="#">

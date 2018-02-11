@@ -6,6 +6,7 @@ use App\Response;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ResponseTest extends TestCase
@@ -19,9 +20,9 @@ class ResponseTest extends TestCase
     }
 
     /** @test */
-    public function response_belongs_to_user()
+    public function response_author_is_polymorph()
     {
-        $this->assertInstanceOf(BelongsTo::class, $this->response->user());
+        $this->assertInstanceOf(MorphTo::class, $this->response->author());
     }
 
     /** @test */

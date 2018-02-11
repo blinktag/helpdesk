@@ -15,7 +15,8 @@ class TicketSeeder extends Seeder
 
         $tickets->each(function($t) {
             factory(App\Response::class, 3)->create([
-                'user_id'   => $t->user_id,
+                'author_id'   => $t->user_id,
+                'author_type' => 'App\User',
                 'ticket_id' => $t->id
             ]);
         });

@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Response extends Model
 {
 
-    use Searchable;
+    //use Searchable;
 
-    protected $fillable = ['content', 'from', 'user_id'];
-
+    protected $fillable = ['content', 'from', 'author_id', 'author_type'];
     protected static function boot()
     {
         parent::boot();
@@ -31,13 +30,13 @@ class Response extends Model
     public function toSearchableArray(): array
     {
       $data = $this->toArray();
-    
+
       $data['ticket_subject'] = $this->ticket->subject;
       $data['author'] = [
         'name'  => $this->user->name,
         'email' => $this->user->email,
       ];
-    
+
       return $data;
     }
 
@@ -46,9 +45,9 @@ class Response extends Model
         return $this->belongsTo(Ticket::class);
     }
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo();
     }
 
     public function attachments()

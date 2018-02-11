@@ -72,7 +72,7 @@ class TicketController extends Controller
     {
         $ticket = Ticket::where('user_id', auth()->user()->id)
                     ->with('responses')
-                    ->with('responses.user')
+                    ->with('responses.author')
                     ->with('responses.attachments')
                     ->findOrFail($request->id);
         return view('ticket.show', compact('ticket'));
