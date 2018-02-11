@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Note;
+use App\Ticket;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NoteResource;
@@ -14,15 +15,6 @@ class NoteController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -32,7 +24,13 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $note = Note::create([
+            'ticket_id' => $request->ticket_id,
+            'content'   => $request->content,
+            'admin_id'  => \Auth::id()
+        ]);
+
+        return new NoteResource($note);
     }
 
     /**
@@ -55,7 +53,15 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        //
+        $this->validate($request, [
+            'content'  => 'required',
+            'priority' => 'required'
+        ]);
+        $note->priority = request('priority');
+        $note->content = request('content');
+        $note->save();
+
+        return new NoteResource($note->fresh());
     }
 
     /**
@@ -66,6 +72,19 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        //
+        $note->delete();
+        return response([], 200);
+    }
+
+    /**
+     * List all notes for a given ticket
+     *
+     * @param Ticket $ticket
+     * @return \Illuminate\Http\Response
+     */
+    public function ticket(Ticket $ticket)
+    {
+        $notes = Note::where('ticket_id', $ticket->id)->get();
+        return NoteResource::collection($notes);
     }
 }

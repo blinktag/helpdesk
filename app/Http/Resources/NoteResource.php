@@ -17,7 +17,7 @@ class NoteResource extends Resource
         return [
             'id'         => $this->id,
             'author'     => $this->author->name,
-            'created_at' => $this->created_at,
+            'created_at' => $this->created_at->timestamp,
             'ticket_id'  => $this->ticket_id,
             'priority'   => $this->priority,
             'content'    => $this->content

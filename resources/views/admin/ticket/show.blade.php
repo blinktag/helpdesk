@@ -13,7 +13,7 @@
             @include('admin.ticket.partials._responses')
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-notes-tab" aria-expanded="false">
-
+            <notes id="{{ $ticket->id }}"></notes>
         </div>
     </div>
     <br />

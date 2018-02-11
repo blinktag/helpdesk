@@ -22,7 +22,7 @@
     "dependencies": {
         "bootswatch": "^4.0.0",
         "moment": "^2.20.1",
-        "swal": "^0.1.0",
+        "sweetalert": "^2.1.0",
         "vue-tree-navigation": "^1.0.2"
     }
 }

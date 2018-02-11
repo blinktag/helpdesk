@@ -7,11 +7,6 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 /**
- * Departments
- */
-Route::resource('/departments', 'DepartmentController');
-
-/**
  * Responses
  */
 Route::resource('/responses', 'ResponseController');
@@ -75,6 +70,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('/ticket', 'Admin\TicketController');
     Route::resource('/response', 'Admin\ResponseController');
     Route::resource('/notes', 'Admin\NoteController');
+    Route::get('/ticket/{ticket}/notes', 'Admin\NoteController@ticket');
 });
 
 

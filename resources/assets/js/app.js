@@ -9,11 +9,17 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+if (process.env.NODE_ENV == 'production') {
+    Vue.config.productionTip = false;
+  }
 
 import VueTreeNavigation from 'vue-tree-navigation';
 import DepartmentTree from './components/department-tree.vue';
+import Notes from './components/notes.vue';
+import swal from 'sweetalert';
 
 Vue.use(VueTreeNavigation);
+Vue.component('notes', Notes);
 
 Vue.component('department-tree', DepartmentTree);
 
