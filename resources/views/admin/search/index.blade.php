@@ -21,27 +21,27 @@
                 @foreach($response_results as $response)
                 <tr>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
+                        <a href="{{ route('admin.ticket.show', $response->ticket_id) }}">
                             {{ $response->ticket_id }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
+                        <a href="{{ route('admin.ticket.show', $response->ticket_id) }}">
                             {{ $response->ticket->subject }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
+                        <a href="{{ route('admin.ticket.show', $response->ticket_id) }}">
                             {{ $response->ticket->last_reply->diffForHumans() }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
+                        <a href="{{ route('admin.ticket.show', $response->ticket_id) }}">
                             {{ $response->ticket->last_replier }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('ticket.show', $response->ticket_id) }}">
+                        <a href="{{ route('admin.ticket.show', $response->ticket_id) }}">
                             @include('ticket.partials._status', ['status' => $response->ticket->status])
                         </a>
                     </td>
