@@ -54,8 +54,17 @@
         methods: {
             fetch() {
                 this.showNew = false;
+                let url = ''
+                switch(this.product) {
+                    case 'ticket':
+                        url = `/admin/ticket/${this.id}/notes`;
+                        break;
+                    case 'user':
+                        url = `/admin/users/${this.id}/notes`;
+                        break;
+                }
 
-                axios.get(`/admin/ticket/${this.id}/notes`)
+                axios.get(url)
                      .then(response => {
                         this.items = [];
                         this.items = response.data.data;

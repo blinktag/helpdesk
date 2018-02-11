@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Note;
+use App\User;
 use App\Ticket;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -97,18 +98,22 @@ class NoteController extends Controller
      */
     public function user(User $user)
     {
-        return NoteResource::collection($user->notes());
+        return NoteResource::collection($user->notes);
     }
 
+    /**
+     *
+     *
+     * @param [type] $product
+     * @return void
+     */
     public function typeToModel($product)
     {
-        switch($product) {
-            case 'ticket':
-                return Ticket::class;
-            case 'user':
-                return User::class;
-            default:
-                throw new \Exception('Invalid note product type');
-        }
+        $map = [
+            'ticket' => Ticket::class,
+            'user'   => User::class
+        ];
+
+        return $map[$product];
     }
 }

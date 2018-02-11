@@ -74538,8 +74538,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.showNew = false;
+            var url = '';
+            switch (this.product) {
+                case 'ticket':
+                    url = '/admin/ticket/' + this.id + '/notes';
+                    break;
+                case 'user':
+                    url = '/admin/users/' + this.id + '/notes';
+                    break;
+            }
 
-            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/admin/ticket/' + this.id + '/notes').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(url).then(function (response) {
                 _this.items = [];
                 _this.items = response.data.data;
             });

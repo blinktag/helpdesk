@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab" aria-expanded="false">
-
+        <notes id="{{ $user->id }}" product="user"></notes>
     </div>
     <div class="tab-pane fade" id="nav-auditlog" role="tabpanel" aria-labelledby="nav-auditlog-tab" aria-expanded="false">
 
