@@ -74518,7 +74518,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: { Note: __WEBPACK_IMPORTED_MODULE_0__note_vue___default.a, NewNote: __WEBPACK_IMPORTED_MODULE_1__new_note_vue___default.a },
 
-    props: ['id'],
+    props: ['id', 'product'],
 
     mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_collection__["a" /* default */]],
 
@@ -75269,12 +75269,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['id'],
+    props: ['id', 'product'],
 
     data: function data() {
         return {
             note: {
-                ticket_id: this.id,
+                product_id: this.id,
+                product_type: this.product,
                 priority: 'low',
                 content: this.content
             }
@@ -75289,7 +75290,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var data = {
                 content: this.note.content,
                 priority: this.note.priority,
-                ticket_id: this.note.ticket_id
+                product_id: this.note.product_id,
+                product_type: this.note.product_type
             };
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/admin/notes/', data).then(function (response) {
@@ -75497,7 +75499,7 @@ var render = function() {
           "div",
           [
             _c("new-note", {
-              attrs: { id: _vm.id },
+              attrs: { id: _vm.id, product: _vm.product },
               on: {
                 updated: _vm.fetch,
                 cancelled: function($event) {

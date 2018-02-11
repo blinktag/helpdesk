@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
 
-    use Searchable;
+    //use Searchable;
 
     protected $guarded = ['id'];
 
@@ -30,7 +30,7 @@ class Ticket extends Model
 
     public function notes()
     {
-        return $this->hasMany(Note::class);
+        return $this->morphMany(Note::class, 'product');
     }
 
     public function responses()

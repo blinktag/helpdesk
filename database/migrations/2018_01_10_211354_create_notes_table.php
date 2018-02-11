@@ -15,7 +15,8 @@ class CreateNotesTable extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('ticket_id')->index();
+            $table->unsignedInteger('product_id')->index();
+            $table->string('product_type')->index();
             $table->unsignedInteger('admin_id')->index();
             $table->text('content');
             $table->enum('priority', ['low', 'medium', 'high'])->default('low');

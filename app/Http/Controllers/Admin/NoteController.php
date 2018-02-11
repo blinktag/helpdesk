@@ -25,10 +25,11 @@ class NoteController extends Controller
     public function store(Request $request)
     {
         $note = Note::create([
-            'ticket_id' => $request->ticket_id,
-            'content'   => $request->content,
-            'admin_id'  => \Auth::id(),
-            'priority'  => $request->priority
+            'product_id'   => $request->product_id,
+            'product_type' => $this->typeToModel($request->product_type),
+            'content'      => $request->content,
+            'admin_id'     => \Auth::id(),
+            'priority'     => $request->priority
         ]);
 
         return new NoteResource($note);
@@ -85,7 +86,29 @@ class NoteController extends Controller
      */
     public function ticket(Ticket $ticket)
     {
-        $notes = Note::where('ticket_id', $ticket->id)->get();
-        return NoteResource::collection($notes);
+        return NoteResource::collection($ticket->notes);
+    }
+
+    /**
+     * List all notes for a given user
+     *
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function user(User $user)
+    {
+        return NoteResource::collection($user->notes());
+    }
+
+    public function typeToModel($product)
+    {
+        switch($product) {
+            case 'ticket':
+                return Ticket::class;
+            case 'user':
+                return User::class;
+            default:
+                throw new \Exception('Invalid note product type');
+        }
     }
 }

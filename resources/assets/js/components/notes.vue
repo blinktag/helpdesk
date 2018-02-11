@@ -9,7 +9,7 @@
             </div>
         <br />
         <div v-if="showNew == true">
-            <new-note :id="id" @updated="fetch" @cancelled="showNew = false"></new-note>
+            <new-note :id="id" :product="product" @updated="fetch" @cancelled="showNew = false"></new-note>
         </div>
         <div @updated="fetch" v-if="items.length">
             <div v-for="(note, index) in items" :key="index">
@@ -36,7 +36,7 @@
     export default {
         components: { Note, NewNote },
 
-        props: ['id'],
+        props: ['id', 'product'],
 
         mixins: [collection],
 

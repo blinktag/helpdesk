@@ -35,6 +35,11 @@ class User extends Authenticatable
         return $this->morphMany(Response::class, 'author');
     }
 
+    public function notes()
+    {
+        return $this->morphMany(Note::class, 'product');
+    }
+
     public function confirmationToken()
     {
         return $this->hasOne(ConfirmationToken::class);

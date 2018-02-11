@@ -35,12 +35,13 @@
 import axios from 'axios';
 
 export default {
-    props: ['id'],
+    props: ['id', 'product'],
 
     data() {
       return {
         note: {
-            ticket_id: this.id,
+            product_id: this.id,
+            product_type: this.product,
             priority: 'low',
             content: this.content
         }
@@ -52,7 +53,8 @@ export default {
             const data = {
                 content: this.note.content,
                 priority: this.note.priority,
-                ticket_id: this.note.ticket_id
+                product_id: this.note.product_id,
+                product_type: this.note.product_type
             }
 
             axios.post('/admin/notes/', data).then(response => {
