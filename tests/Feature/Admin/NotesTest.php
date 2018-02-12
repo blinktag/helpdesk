@@ -33,7 +33,8 @@ class NotesTest extends TestCase
         $this->signInAdmin($admin);
 
         $note = Note::create([
-            'ticket_id' => 1,
+            'product_id' => 1,
+            'product_type' => 'App\Ticket',
             'admin_id'  => $admin->id,
             'content'   => 'This conversation was easy'
         ]);
@@ -50,13 +51,16 @@ class NotesTest extends TestCase
         $this->signInAdmin($admin);
 
         $note_data = [
-            'ticket_id' => $ticket->id,
-            'content'   => 'Please update user by 3pm',
-            'priority'  => 'medium'
+            'product_id'   => $ticket->id,
+            'product_type' => 'ticket',
+            'content'      => 'Please update user by 3pm',
+            'priority'     => 'medium'
         ];
 
         $this->post("/admin/notes/", $note_data)
              ->assertStatus(201);
+
+        $note_data['product_type'] = 'App\Ticket';
 
         $this->assertDatabaseHas('notes', $note_data);
     }
@@ -66,7 +70,11 @@ class NotesTest extends TestCase
     {
         $admin = factory(\App\Admin::class)->create();
         $ticket = factory(\App\Ticket::class)->create();
-        $note = factory(\App\Note::class)->create(['ticket_id' => $ticket->id, 'admin_id' => $admin->id]);
+        $note = factory(\App\Note::class)->create([
+            'product_id'   => $ticket->id,
+            'product_type' => 'App\Ticket',
+            'admin_id'     => $admin->id
+        ]);
         $this->signInAdmin($admin);
 
         $this->put("/admin/notes/{$note->id}", ['content' => 'New Content', 'priority' => 'high'])

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class TicketTest extends TestCase
 {
@@ -38,7 +39,7 @@ class TicketTest extends TestCase
     /** @test */
     public function ticket_hasmany_notes()
     {
-        $this->assertInstanceOf(HasMany::class, $this->ticket->notes());
+        $this->assertInstanceOf(MorphMany::class, $this->ticket->notes());
     }
 
     /** @test */
@@ -46,5 +47,5 @@ class TicketTest extends TestCase
     {
         $this->assertInstanceOf(HasMany::class, $this->ticket->responses());
     }
-    
+
 }

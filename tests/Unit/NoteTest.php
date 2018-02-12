@@ -20,9 +20,9 @@ class NoteTest extends TestCase
     }
 
     /** @test */
-    public function note_belongs_to_a_ticket()
+    public function note_belongs_to_a_product()
     {
-        $this->assertInstanceOf(BelongsTo::class, $this->note->ticket());
+        $this->assertInstanceOf(BelongsTo::class, $this->note->product());
     }
 
     /** @test */
