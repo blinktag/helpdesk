@@ -10,7 +10,7 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade active show" id="nav-ticket" role="tabpanel" aria-labelledby="nav-ticket-tab" aria-expanded="true">
-            @include('admin.ticket.partials._responses')
+            <responses ticketid="{{ $ticket->id }}"></responses>
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-notes-tab" aria-expanded="false">
             <notes id="{{ $ticket->id }}" product="ticket"></notes>

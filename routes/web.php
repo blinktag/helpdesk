@@ -93,7 +93,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     /**
      * Manipulating responses
      */
-    Route::resource('/response', 'Admin\ResponseController');
+    Route::resource('/responses', 'Admin\ResponseController');
 
     /**
      * Manipulating users

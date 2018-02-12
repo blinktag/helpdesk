@@ -5,7 +5,7 @@
                 Reply
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.response.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.responses.store') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="ticket_id" value="{{ $ticket->id }}" />
                         <div class="form-group">

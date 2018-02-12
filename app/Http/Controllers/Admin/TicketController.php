@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Ticket;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TicketResource;
 
 class TicketController extends Controller
 {
@@ -48,11 +49,15 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show(Request $request, Ticket $ticket)
     {
+        if ($request->wantsJson()) {
+            return new TicketResource($ticket);
+        }
         return view('admin.ticket.show', compact('ticket'));
     }
 

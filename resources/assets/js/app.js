@@ -16,12 +16,14 @@ if (process.env.NODE_ENV == 'production') {
 import VueTreeNavigation from 'vue-tree-navigation';
 import DepartmentTree from './components/department-tree.vue';
 import Notes from './components/notes.vue';
+import Responses from './components/responses.vue';
 import swal from 'sweetalert';
 
 Vue.use(VueTreeNavigation);
 Vue.component('notes', Notes);
 
 Vue.component('department-tree', DepartmentTree);
+Vue.component('responses', Responses);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

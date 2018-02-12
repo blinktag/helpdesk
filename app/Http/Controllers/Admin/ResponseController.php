@@ -9,6 +9,7 @@ use App\Services\CreateResponse;
 use App\Events\TicketReplyCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewResponse;
+use App\Http\Resources\ResponseResource;
 
 class ResponseController extends Controller
 {
@@ -43,45 +44,38 @@ class ResponseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\response  $response
+     * @param  \App\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function show(response $response)
+    public function show(Response $response)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(response $response)
-    {
-        //
+        return new ResponseResource($response);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\response  $response
+     * @param  \App\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, response $response)
+    public function update(Request $request, Response $response)
     {
-        //
+        $response->content = $request->content;
+        $response->save();
+
+        return new ResponseResource($response->fresh());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\response  $response
+     * @param  \App\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function destroy(response $response)
+    public function destroy(Response $response)
     {
-        //
+        $response->delete();
+        return response([], 200);
     }
 }
