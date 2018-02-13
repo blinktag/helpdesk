@@ -21,7 +21,9 @@
     },
     "dependencies": {
         "bootswatch": "^4.0.0",
+        "laravel-echo": "^1.3.5",
         "moment": "^2.20.1",
+        "pusher-js": "^4.2.2",
         "sweetalert": "^2.1.0",
         "vue-tree-navigation": "^1.0.2"
     }
