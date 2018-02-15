@@ -31,7 +31,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::all();
-        return response()->json($departments);
+        return view('admin.departments.index', compact('departments'));
     }
 
     /**
@@ -39,10 +39,10 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     //
-    // }
+    public function create()
+    {
+        return view('admin.departments.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -55,7 +55,7 @@ class DepartmentController extends Controller
         $this->validate(request(), ['name' => 'required']);
 
         $department = Department::create(['name' => request('name')]);
-        return response()->json($department);
+        return redirect(route('admin.departments.index'))->withSuccess('Department created');
     }
 
     /**
