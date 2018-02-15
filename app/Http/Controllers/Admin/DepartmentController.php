@@ -104,6 +104,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-        return response([], 204);
+        return redirect(route('admin.departments.index'))
+                    ->withSuccess("Department {$department->name} deleted");
     }
 }
