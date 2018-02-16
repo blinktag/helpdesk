@@ -32,6 +32,19 @@ class DepartmentsTest extends TestCase
         $this->assertDatabaseHas('departments', ['name' => 'Test Dept']);
     }
 
+    /** @test */
+    public function admin_can_update_department()
+    {
+        $department = factory(Department::class)->create();
+
+        $this->signInAdmin();
+
+        $this->put("/admin/departments/{$department->id}", ['name' => 'New Department Name'])
+             ->assertRedirect('/admin/departments');
+
+        $this->assertDatabaseHas('departments', ['name' => 'New Department Name']);
+    }
+
      /** @test */
      public function admin_can_delete_department()
      {

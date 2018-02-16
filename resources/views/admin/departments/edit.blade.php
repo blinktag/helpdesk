@@ -1,19 +1,20 @@
 @extends('layouts.admin')
 
-@section('page_title', 'Create New Department')
+@section('page_title', 'Editing Department')
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        New Department
+        Editing {{ $department->name }}
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route('admin.departments.store') }}" class="form-horizontal">
+        <form method="POST" action="{{ route('admin.departments.update', $department->id) }}" class="form-horizontal">
             {{ csrf_field() }}
+            {{ method_field('PUT') }}
 
             @include('partials._input', [
                 'key' => 'name',
-                'value' => '',
+                'value' => $department->name,
                 'label' => 'Department Name'
             ])
 

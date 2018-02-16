@@ -76,10 +76,10 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    // public function edit(Department $department)
-    // {
-    //     //
-    // }
+    public function edit(Department $department)
+    {
+        return view('admin.departments.edit', compact('department'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -90,9 +90,12 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        $this->validate(request(), ['name' => 'required']);
+        $this->validate($request, ['name' => 'required']);
+
         $department->name = request('name');
-        return response()->json($department);
+        $department->save();
+
+        return redirect(route('admin.departments.index'))->withSuccess("Department updated");
     }
 
     /**
