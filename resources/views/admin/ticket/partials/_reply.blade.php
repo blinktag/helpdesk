@@ -17,7 +17,7 @@
                                 </span>
                             @endif
                         </div>
-                        @include('ticket.partials._attachment_field')
+                        <upload></upload>
                         <button type="submit" class="btn btn-success">
                             Add Reply
                         </button>

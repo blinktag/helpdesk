@@ -17,6 +17,7 @@ import VueTreeNavigation from 'vue-tree-navigation';
 import DepartmentTree from './components/department-tree.vue';
 import Notes from './components/notes.vue';
 import Responses from './components/responses.vue';
+import Upload from './components/upload.vue';
 import swal from 'sweetalert';
 
 Vue.use(VueTreeNavigation);
@@ -24,6 +25,7 @@ Vue.component('notes', Notes);
 
 Vue.component('department-tree', DepartmentTree);
 Vue.component('responses', Responses);
+Vue.component('upload', Upload);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
