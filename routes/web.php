@@ -86,6 +86,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('/departments', 'Admin\DepartmentController');
 
     /**
+     * Configuring e-mail pipes
+     */
+    Route::resource('/pipes', 'Admin\PipeController');
+
+    /**
      * Searching tickets
      */
     Route::get('/search', 'Admin\SearchController@index')->name('search');
