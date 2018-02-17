@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Pipe;
+use App\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PipeStoreRequest;
 
 class PipeController extends Controller
 {
@@ -32,7 +34,8 @@ class PipeController extends Controller
      */
     public function create()
     {
-        //
+        $departments = Department::all()->pluck('name', 'id');
+        return view('admin.pipes.create', compact('departments'));
     }
 
     /**
@@ -41,9 +44,16 @@ class PipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PipeStoreRequest $request)
     {
-        //
+        Pipe::create([
+            'server'        => request('server'),
+            'username'      => request('username'),
+            'password'      => encrypt(request('password')),
+            'department_id' => request('department_id')
+        ]);
+
+        return redirect(route('admin.pipes.index'))->withSuccess('Pipe created');
     }
 
     /**

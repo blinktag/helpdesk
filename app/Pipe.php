@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pipe extends Model
 {
+
+    protected $guarded = ['id'];
+
     /**
      * Generate DNS for connecting to mailbox
      *
