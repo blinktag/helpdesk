@@ -22,7 +22,8 @@ class ResponseResource extends Resource
             'gravatar_url' => $this->author->getGravatarUrl(),
             'content'      => $this->content,
             'from'         => $this->from,
-            'created_at'   => $this->created_at->diffForHumans()
+            'created_at'   => $this->created_at->diffForHumans(),
+            'attachments'  => AttachmentResource::collection($this->attachments)
         ];
     }
 }

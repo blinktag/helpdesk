@@ -26,6 +26,22 @@
                             {{ content }}
                         </div>
 
+                        <div class="response__content__attachments" v-if="attachments.length > 0">
+                            <div class="dropdown show pull-right">
+                                <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="badge badge-pill badge-light" v-text="attachments.length"></span>
+                                    Attachments
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#" v-for="(attachment, index) in attachments" :key="index">
+                                            <i class="fa fa-file-pdf-o"></i>
+                                            {{ attachment.name }}
+                                            ({{ attachment.size }}KB)
+                                        </a>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                     <div v-if="editing == true">
