@@ -41,7 +41,7 @@ class PipeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\PipeStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PipeStoreRequest $request)
@@ -75,19 +75,27 @@ class PipeController extends Controller
      */
     public function edit(Pipe $pipe)
     {
-        //
+        $departments = Department::all()->pluck('name', 'id');
+        return view('admin.pipes.edit', compact('pipe', 'departments'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\PipeStoreRequest  $request
      * @param  \App\Pipe  $pipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pipe $pipe)
+    public function update(PipeStoreRequest $request, Pipe $pipe)
     {
-        //
+        $pipe->update([
+            'server'        => request('server'),
+            'username'      => request('username'),
+            'password'      => encrypt(request('password')),
+            'department_id' => request('department_id')
+        ]);
+
+        return redirect(route('admin.pipes.index'))->withSuccess('Pipe updated');
     }
 
     /**
