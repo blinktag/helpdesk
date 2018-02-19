@@ -106,6 +106,7 @@ class PipeController extends Controller
      */
     public function destroy(Pipe $pipe)
     {
-        //
+        $pipe->delete();
+        return back()->withSuccess("Pipe {$pipe->username} deleted");
     }
 }

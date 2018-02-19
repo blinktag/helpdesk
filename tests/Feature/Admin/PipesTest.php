@@ -58,4 +58,16 @@ class PipesTest extends TestCase
 
         $this->assertDatabaseHas('pipes', ['server' => $new_data['server']]);
     }
+
+    /** @test */
+    public function admin_can_delete_pipe()
+    {
+        $department = factory(Department::class)->create();
+        $pipe = factory(Pipe::class)->create(['department_id' => $department->id]);
+
+        $this->signInAdmin();
+        $this->delete("/admin/pipes/{$pipe->id}");
+
+        $this->assertDatabaseMissing('pipes', ['username' => $pipe->username]);
+    }
 }
