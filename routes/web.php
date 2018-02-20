@@ -116,6 +116,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('/notes', 'Admin\NoteController');
     Route::get('/ticket/{ticket}/notes', 'Admin\NoteController@ticket');
     Route::get('/users/{user}/notes', 'Admin\NoteController@user');
+
+    /**
+     * Password
+     */
+    Route::get('password', 'Admin\PasswordController@index')->name('password.index');
+    Route::post('password', 'Admin\PasswordController@store')->name('password.store');
 });
 
 
